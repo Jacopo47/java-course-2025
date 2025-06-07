@@ -1,0 +1,10 @@
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Ernest', 'Hemingway', '1899-07-21');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('John Ronald Reuel', 'Tolkien', '1892-01-03');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Jane', 'Austen', '1775-12-16');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Eric Arthur', 'Blair', '1903-06-25');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Adeline Virginia', 'Woolf', '1882-01-25');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Samuel Langhorne', 'Clemens', '1835-11-30');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Lev Nikolayevich', 'Tolstoy', '1828-09-09');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Agatha Mary Clarissa', 'Christie', '1890-09-15');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Joanne Kathleen', 'Rowling', '1965-07-31');
+INSERT INTO Authors (name, surname, birthdate) VALUES ('Salvatore', 'Sanfilippo', '1977-03-07');
