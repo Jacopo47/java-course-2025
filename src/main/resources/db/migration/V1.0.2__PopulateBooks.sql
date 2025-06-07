@@ -1,0 +1,30 @@
+INSERT INTO Books (title, author) VALUES ('The Old Man and the Sea', 1);
+INSERT INTO Books (title, author) VALUES ('A Farewell to Arms', 1);
+INSERT INTO Books (title, author) VALUES ('For Whom the Bell Tolls', 1);
+INSERT INTO Books (title, author) VALUES ('The Sun Also Rises', 1);
+INSERT INTO Books (title, author) VALUES ('The Hobbit', 2);
+INSERT INTO Books (title, author) VALUES ('The Lord of the Rings', 2);
+INSERT INTO Books (title, author) VALUES ('The Silmarillion', 2);
+INSERT INTO Books (title, author) VALUES ('Pride and Prejudice', 3);
+INSERT INTO Books (title, author) VALUES ('Sense and Sensibility', 3);
+INSERT INTO Books (title, author) VALUES ('Emma', 3);
+INSERT INTO Books (title, author) VALUES ('1984', 4);
+INSERT INTO Books (title, author) VALUES ('Animal Farm', 4);
+INSERT INTO Books (title, author) VALUES ('Mrs Dalloway', 5);
+INSERT INTO Books (title, author) VALUES ('To the Lighthouse', 5);
+INSERT INTO Books (title, author) VALUES ('The Adventures of Tom Sawyer', 6);
+INSERT INTO Books (title, author) VALUES ('Adventures of Huckleberry Finn', 6);
+INSERT INTO Books (title, author) VALUES ('War and Peace', 7);
+INSERT INTO Books (title, author) VALUES ('Anna Karenina', 7);
+INSERT INTO Books (title, author) VALUES ('Murder on the Orient Express', 8);
+INSERT INTO Books (title, author) VALUES ('The Murder of Roger Ackroyd', 8);
+
+INSERT INTO Books (title, author) VALUES ('Harry Potter and the Philosopher''s Stone', 9);
+INSERT INTO Books (title, author) VALUES ('Harry Potter and the Chamber of Secrets', 9);
+INSERT INTO Books (title, author) VALUES ('Harry Potter and the Prisoner of Azkaban', 9);
+INSERT INTO Books (title, author) VALUES ('Harry Potter and the Goblet of Fire', 9);
+INSERT INTO Books (title, author) VALUES ('Harry Potter and the Order of the Phoenix', 9);
+INSERT INTO Books (title, author) VALUES ('Harry Potter and the Half-Blood Prince', 9);
+INSERT INTO Books (title, author) VALUES ('Harry Potter and the Deathly Hallows', 9);
+
+INSERT INTO Books (title, author) VALUES ('Whope', 10);
