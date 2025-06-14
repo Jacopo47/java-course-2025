@@ -30,6 +30,7 @@ public class BookService {
                 .bind("limit", DEFAULT_LIMIT)
                 .bind("offset", DEFAULT_OFFSET)
                 .bind("author", id)
+                .defineNamedBindings() /* Calling this method is useful in order to bind all query's vars. Useful in case of conditional <if(..)> <endif> in the query. */
                 .mapTo(Book.class)
                 .list());
     }

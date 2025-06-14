@@ -10,6 +10,7 @@ import org.course.models.data.Order;
 import org.course.models.data.User;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.reflect.ConstructorMapper;
+import org.jdbi.v3.core.statement.Slf4JSqlLogger;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.jdbi.v3.stringtemplate4.StringTemplateEngine;
 
@@ -22,6 +23,7 @@ public class JdbiProvider {
     public Jdbi jdbi() {
         return Jdbi.create(ds)
                    .installPlugin(new SqlObjectPlugin())
+                   .setSqlLogger(new Slf4JSqlLogger())
                    .registerRowMapper(ConstructorMapper.factory(Author.class))
                    .registerRowMapper(ConstructorMapper.factory(User.class))
                    .registerRowMapper(ConstructorMapper.factory(Order.class))
