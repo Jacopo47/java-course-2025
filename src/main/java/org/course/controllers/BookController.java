@@ -11,7 +11,7 @@ import org.course.services.BookService;
 import java.util.List;
 
 @Path("/books")
-public class BooksController {
+public class BookController {
 
     @Inject
     BookService service;

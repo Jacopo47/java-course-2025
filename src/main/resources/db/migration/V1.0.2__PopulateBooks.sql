@@ -1,30 +1,29 @@
-INSERT INTO Books (title, author) VALUES ('The Old Man and the Sea', 1);
-INSERT INTO Books (title, author) VALUES ('A Farewell to Arms', 1);
-INSERT INTO Books (title, author) VALUES ('For Whom the Bell Tolls', 1);
-INSERT INTO Books (title, author) VALUES ('The Sun Also Rises', 1);
-INSERT INTO Books (title, author) VALUES ('The Hobbit', 2);
-INSERT INTO Books (title, author) VALUES ('The Lord of the Rings', 2);
-INSERT INTO Books (title, author) VALUES ('The Silmarillion', 2);
-INSERT INTO Books (title, author) VALUES ('Pride and Prejudice', 3);
-INSERT INTO Books (title, author) VALUES ('Sense and Sensibility', 3);
-INSERT INTO Books (title, author) VALUES ('Emma', 3);
-INSERT INTO Books (title, author) VALUES ('1984', 4);
-INSERT INTO Books (title, author) VALUES ('Animal Farm', 4);
-INSERT INTO Books (title, author) VALUES ('Mrs Dalloway', 5);
-INSERT INTO Books (title, author) VALUES ('To the Lighthouse', 5);
-INSERT INTO Books (title, author) VALUES ('The Adventures of Tom Sawyer', 6);
-INSERT INTO Books (title, author) VALUES ('Adventures of Huckleberry Finn', 6);
-INSERT INTO Books (title, author) VALUES ('War and Peace', 7);
-INSERT INTO Books (title, author) VALUES ('Anna Karenina', 7);
-INSERT INTO Books (title, author) VALUES ('Murder on the Orient Express', 8);
-INSERT INTO Books (title, author) VALUES ('The Murder of Roger Ackroyd', 8);
-
-INSERT INTO Books (title, author) VALUES ('Harry Potter and the Philosopher''s Stone', 9);
-INSERT INTO Books (title, author) VALUES ('Harry Potter and the Chamber of Secrets', 9);
-INSERT INTO Books (title, author) VALUES ('Harry Potter and the Prisoner of Azkaban', 9);
-INSERT INTO Books (title, author) VALUES ('Harry Potter and the Goblet of Fire', 9);
-INSERT INTO Books (title, author) VALUES ('Harry Potter and the Order of the Phoenix', 9);
-INSERT INTO Books (title, author) VALUES ('Harry Potter and the Half-Blood Prince', 9);
-INSERT INTO Books (title, author) VALUES ('Harry Potter and the Deathly Hallows', 9);
-
-INSERT INTO Books (title, author) VALUES ('Whope', 10);
+INSERT INTO Books (title, isbn, publication, price, author) VALUES
+('The Old Man and the Sea', '978-0684801223', '1952-09-01 00:00:00+00', 12.99, 1),
+('A Farewell to Arms', '978-0684801469', '1929-07-27 00:00:00+00', 14.50, 1),
+('For Whom the Bell Tolls', '978-0684803357', '1940-10-21 00:00:00+00', 16.00, 1),
+('The Sun Also Rises', '978-0684801520', '1926-10-22 00:00:00+00', 13.75, 1),
+('The Hobbit', '978-0345339683', '1937-09-21 00:00:00+00', 10.50, 2),
+('The Lord of the Rings', '978-0618053267', '1954-07-29 00:00:00+00', 25.00, 2),
+('The Silmarillion', '978-0345325815', '1977-09-15 00:00:00+00', 18.25, 2),
+('Pride and Prejudice', '978-0141439518', '1813-01-28 00:00:00+00', 9.99, 3),
+('Sense and Sensibility', '978-0141439563', '1811-10-30 00:00:00+00', 9.50, 3),
+('Emma', '978-0141439587', '1815-12-01 00:00:00+00', 10.25, 3),
+('1984', '978-0451524935', '1949-06-08 00:00:00+00', 11.75, 4),
+('Animal Farm', '978-0451526342', '1945-08-17 00:00:00+00', 8.99, 4),
+('Mrs Dalloway', '978-0156628709', '1925-05-14 00:00:00+00', 10.99, 5),
+('To the Lighthouse', '978-0156907392', '1927-05-05 00:00:00+00', 11.50, 5),
+('The Adventures of Tom Sawyer', '978-0486280598', '1876-06-15 00:00:00+00', 7.99, 6),
+('Adventures of Huckleberry Finn', '978-0486280611', '1884-12-10 00:00:00+00', 8.25, 6),
+('War and Peace', '978-0307270067', '1869-01-01 00:00:00+00', 22.00, 7),
+('Anna Karenina', '978-0140449174', '1877-01-01 00:00:00+00', 19.50, 7),
+('Murder on the Orient Express', '978-0062073491', '1934-01-01 00:00:00+00', 9.75, 8),
+('The Murder of Roger Ackroyd', '978-0062073521', '1926-06-01 00:00:00+00', 9.25, 8),
+('Harry Potter and the Philosopher''s Stone', '978-0747532743', '1997-06-26 00:00:00+00', 15.00, 9),
+('Harry Potter and the Chamber of Secrets', '978-0747538493', '1998-07-02 00:00:00+00', 15.50, 9),
+('Harry Potter and the Prisoner of Azkaban', '978-0747542159', '1999-07-08 00:00:00+00', 16.00, 9),
+('Harry Potter and the Goblet of Fire', '978-0747546249', '2000-07-08 00:00:00+00', 17.00, 9),
+('Harry Potter and the Order of the Phoenix', '978-0747551000', '2003-06-21 00:00:00+00', 18.00, 9),
+('Harry Potter and the Half-Blood Prince', '978-0747581084', '2005-07-16 00:00:00+00', 19.00, 9),
+('Harry Potter and the Deathly Hallows', '978-0747591054', '2007-07-21 00:00:00+00', 20.00, 9),
+('Whope', '978-9999999999', '2023-01-01 00:00:00+00', 10.00, 10);

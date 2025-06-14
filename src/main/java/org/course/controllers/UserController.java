@@ -6,11 +6,11 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("/user")
-public class User {
+public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public User get() {
+    public UserController get() {
         return null;
     }
 }

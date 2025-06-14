@@ -14,7 +14,7 @@ import java.util.List;
 
 @Path("/authors")
 @Produces(MediaType.APPLICATION_JSON)
-public class AuthorsController {
+public class AuthorController {
 
     @Inject
     AuthorService service;

@@ -2,7 +2,6 @@ package org.course.services;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.course.models.data.Author;
 import org.course.models.data.Book;
 import org.jdbi.v3.core.Jdbi;
 
