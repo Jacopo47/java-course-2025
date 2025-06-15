@@ -5,7 +5,7 @@ import org.course.models.data.interfaces.Auditable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public record Order(
+public record OrderItem(
         long id,
         long userId,
         long bookId,

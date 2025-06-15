@@ -1,0 +1,25 @@
+meta {
+  name: create order
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/orders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{book-store-jwt}}
+}
+
+body:json {
+  {
+    "userId": 1,
+    "books": [
+      { "id": 10, "quantity": 1, "price": 10.99 },
+      { "id": 9, "quantity": 1, "price": 20}
+    ]
+  }
+}

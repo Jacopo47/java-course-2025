@@ -1,0 +1,15 @@
+meta {
+  name: users
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/users
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{book-store-jwt}}
+}

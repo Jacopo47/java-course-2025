@@ -1,5 +1,5 @@
 CREATE TABLE Orders(
-    id serial,
+    id INT NOT NULL,
     userId serial references Users(id),
     bookId serial references Books(id),
 
@@ -12,3 +12,9 @@ CREATE TABLE Orders(
     PRIMARY KEY (id, userId, bookId)
 );
 
+CREATE SEQUENCE orders_id_sequence
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    NO MAXVALUE
+    CACHE 1;

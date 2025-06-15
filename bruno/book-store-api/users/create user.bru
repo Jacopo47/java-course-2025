@@ -1,0 +1,22 @@
+meta {
+  name: create user
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/users
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{book-store-jwt}}
+}
+
+body:json {
+  {
+    "email": "jacopo.riciputi@gmail.com",
+    "birthdate": "1995-07-30"
+  }
+}
