@@ -156,3 +156,204 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
  - più lento
  - pericoloso.. accessi concorrenti
  - ripulito dal GC
+
+# Il Garbage Collector
+
+È il componente che si occupa di *trovare* e *cancellare* gli oggetti in memoria che non sono più referenziati.
+
+Si compone di due fasi principali:
+ - **Mark**: identifica gli oggetti in utilizzo e quelli non più e *marchia* questi ultimi;
+ - **Sweep**: libera la memoria dagli oggetti marchiati alla fase precedente.
+
+È trasparente all'utilizzatore. Ciò significa che chi sviluppa non deve preoccuparsi del GC, gli basti sapere che questo c'è e di "tanto in tanto" farà il suo lavoro.
+
+Ecco.. questo è vero fino a un certo punto. Il GC ha dei pro, ma anche dei contro, che è bene conoscere:
+ - Overhead, tutto questo tenere traccia da parte della JVM non viene gratis;
+ - Non si ha controllo su quando il GC inizia le sue fasi. Questo può avere un impatto sull'operatività del nostro applicativo;
+ - In determinate situazioni può addirittura portare a un "freeze" dell'applicativo (è anche vero che con gli anni java ha investito tanto nel migliorarlo e i risultati si vedono).
+
+Qualche dettaglio in più: [Baeldung](https://www.baeldung.com/jvm-garbage-collectors), [Uber](https://www.uber.com/en-IT/blog/jvm-tuning-garbage-collection/).
+
+# Tornando a Classi e Oggetti
+
+```java
+/*
+ * Person is a class.
+ * A class describes the behavior of its objects.
+ *
+ * A class is a static component.
+ * In order to make a class "alive" we have to instantiate it.
+ * e.g. Person jacopo = new Person(..);
+ *
+ * In this way a class has its own space in memory and lives autonomously.
+ * That means that we can access to it's "visible" interface.
+ */
+public class Person {
+
+    /*
+    * This is a property of this class.
+    * It's private that means that this attribute can be access only inside this class and not from the outside by who has the reference of the object.
+    *
+    * This property is of type: String ; it means that is referring to another object.
+    */
+    private final String name;
+    private final LocalDate birthDate;
+
+    /*
+    * This is a: constructor.
+    *
+    * It can be used in order to instantiate a class into an object.
+    */
+    public Person(String name, LocalDate birthDate) {
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
+    /*
+    * This is a: method.
+    * It a functionality that we can call on the instance of the object in order to interact with the object itself.
+    *
+    * A method has a signature.
+    * The signature is composed by (in most cases):
+    *
+    * <visibility> <return type> <method name> ( <input parameters> )
+    *
+    * In this case this method is returning a primitive: long.
+    *
+    * From: https://www.baeldung.com/java-primitives
+    *   The eight primitives defined in Java are int, byte, short, long, float, double, boolean and char. These aren’t considered objects and represent raw values.
+    *   They’re stored directly on the stack.
+    */
+    public long getAge() {
+        return ChronoUnit.YEARS.between(birthDate, LocalDate.now());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    /*
+    * Everything is an object in Java and every object extends java.lang.Object
+    * This allow to inherit functionalities from the language.
+    *
+    * In this case the method toString() is implemented by the java.lang.Object with a default implementation.
+    * So, without any explicit action on every Object we can call the method toString() and leverage on the default implementation.
+    * Then, if we have the need, we can override the default implementation as below:
+    *
+    * This is how it works Inheritance.
+    */
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
+                .add("name='" + name + "'")
+                .add("birthDate=" + birthDate)
+                .toString();
+    }
+}
+```
+
+# Interfacce
+
+> In Java, un'interfaccia è un **contratto** che definisce un insieme di metodi che una classe deve implementare, garantendo così un comportamento specifico senza preoccuparsi dei dettagli di implementazione.
+
+```java
+public interface Speaker {
+    String speak();
+}
+
+public interface Screamer {
+    String scream();
+}
+
+public class PersonWithVoice implements Speaker, Screamer {
+
+    /*
+     * The final keyword.
+     * QUESTION: Why using final for the attribute name?
+     */
+    private final String name;
+
+    public PersonWithVoice(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String speak() {
+        return "Hi, I'm " + this.getName();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String scream() {
+        return "HI, I'M " + this.getName() + "!!";
+    }
+}
+```
+
+Notare che una classe può implementare più interfacce.
+
+# Ereditarietà
+
+> In Java, l'ereditarietà è un meccanismo che permette a una nuova classe (sottoclasse o classe derivata) di acquisire i campi e i metodi di una classe esistente (superclasse o classe base), favorendo il riuso del codice e la creazione di una gerarchia "è un tipo di".
+
+```java
+public abstract class Animal implements Speaker {
+
+    private final String name;
+
+    /*
+    * QUESTION: why protected?
+    */
+    protected Animal(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+}
+
+class Dog extends Animal {
+    public Dog(String name) {
+        super(name);
+    }
+
+    @Override
+    public String speak() {
+        return "Woof Woof";
+    }
+}
+
+class Cat extends Animal {
+
+    public Cat(String name) {
+        super(name);
+    }
+
+    @Override
+    public String speak() {
+        return "Miao miao!";
+    }
+}
+```
+
+# Strutture dati
+
+[Fred Brooks](https://en.wikipedia.org/wiki/Fred_Brooks), in *The Mythical Man-Month* (1975), scrisse:
+
+> Show me your flowchart and conceal your tables, and I shall continue to be mystified. Show me your tables, and I won't usually need your flowchart; it'll be obvious.
+
+Citato da [Eric Raymond](https://it.wikipedia.org/wiki/Eric_Steven_Raymond), in *The Cathedral and the Bazaar* (1999):
+
+> Show me your code and conceal your data structures, and I shall continue to be mystified. Show me your data structures, and I won't usually need your code; it'll be obvious.
+
+(più dettagli [qui](https://news.ycombinator.com/item?id=10293795))
+
+
+A questi possiamo aggiungere una citazione attribuita a [Linus Torvald](https://en.wikipedia.org/wiki/Linus_Torvalds):
+
+> Bad programmers worry about the code. Good programmers worry about data structures and their relationships.
+
