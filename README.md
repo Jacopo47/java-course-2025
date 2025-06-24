@@ -559,6 +559,20 @@ public class MapExample {
 }
 ```
 
+## Collezioni immutabili
+
+Occhio alle implementazioni di java.
+Io sinceramente non ho mai capito questa cosa.
+Tutto il contrario del pensiero java quella di permettere un errore a runtime senza che venga intercettato a compile-time.
+
+```java
+List<String> immutableList = List.of("apple", "banana", "cherry");
+// immutableList.add("date"); // Lancia UnsupportedOperationException
+```
+
+Ci sono altre librerie che permetto di utilizzare reali collezioni `immutable`.
+
+
 # equals e hashCode: uguaglianza tra oggetti
 
 > In Java, `equals()` definisce l'**uguaglianza logica** tra due oggetti (cioè se rappresentano lo stesso valore o stato), mentre `hashCode()` restituisce un **valore hash intero** utilizzato per determinare efficientemente la potenziale uguaglianza e distribuire gli oggetti nelle collezioni basate su hash (come `HashMap` e `HashSet`), con il contratto cruciale che se due oggetti sono uguali secondo `equals()`, il loro `hashCode()` deve restituire lo stesso valore.
