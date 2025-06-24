@@ -1,6 +1,6 @@
-# Java è il ecosistema sul quale fare software a oggi
+# Java è il miglior ecosistema sul quale fare software a oggi
 
-*Descrivimi con una frase java come linguaggio di programmazione:* 
+*Descrivimi, con una frase, java come linguaggio di programmazione:* 
 
 Gemini: 
 
@@ -57,7 +57,7 @@ L'idea dietro a questo corso è di appoggiarsi sui seguenti argomenti per poi av
 - Primi passi
 - Concetti di OOP
 - Strutture dati
-- dopo java 8
+- da java 8 a oggi
 
 ### Book store API
 
@@ -730,3 +730,145 @@ public class Main {
 
 ### Stream
 
+> A Java stream is a pipeline of functions that can be evaluated. Java streams are not a data structure and cannot mutate data; they can only transform data.
+
+Da https://www.jrebel.com/blog/java-streams-in-java-8
+
+Caratteristiche principali:
+
+- *Non sono strutture dati*: ma operano spesso partendo da una struttura dati per iterarla e applicare una sequenza di operazioni restituendo un nuovo riferimento come output.
+- Sono composti da operazioni *intermedie* e *terminali*: grazie a questa caratteristica sono anche *lazy*, il che significa che le operazioni non solo valutate immediatamente (quelle intermedie) ma vengono valutate solo quando una terminale viene chiamata.
+- *Non ripetibili*: uno stream può essere eseguito una sola volta. Ciò significa che può essere usata una sola operazione terminale su uno stream. Nel caso venisse chiamata una seconda (anche nel caso fosse la stessa) riceveremmo un'eccezione.
+- *Parallelismo*: forniscono API che permettono l'esecuzione in parallelo delle singole operazioni senza grandi complicazioni per lo sviluppatore.
+- *Fluent API*: 
+
+```java
+var pipeline = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+                   .stream()
+                   .map(e -> e * 5)
+                   .filter(e -> e % 2 == 0)
+                   .map(e -> e * 2)
+                   .map(Object::toString);
+
+System.out.println(pipeline.collect(Collectors.toUnmodifiableList())); // [0, 20, 40, 60, 80]
+System.out.println(pipeline.count()); // java.lang.IllegalStateException: stream has already been operated upon or closed
+// Other languages allow the re-execution of a stream (e.g. c# with IEnumerable) but in some cases it could be risky..
+```
+
+
+### Optional (i miei preferiti)
+
+> Optional rappresenta la presenza (Some) o l'assenza (None) di un oggetto
+
+Sono i nostri migliori amici contro i NullPointerException.
+
+```java
+Function<String, Optional<String>> toUpper = input -> Optional.ofNullable(input)
+        .map(String::toUpperCase);
+
+var person = new Person("Jacopo", new Address("street"));
+var street = Optional.ofNullable(person)
+        .map(Person::address)
+        .map(Address::street)
+        .filter(e -> !e.isEmpty())
+        .flatMap(toUpper)
+        .orElse("unknown");
+
+Assertions.assertEquals("STREET", street);
+```
+
+Amici essenziali contro i NPE.
+Senza l'utilizzo di Optional si verificano spesso 2 situazioni: 
+ - o ci si becca un treno di NPE;
+ - o si fanno if infinite.. per poi beccarsi dei NPE
+
+È molto comune vedere cose tipo:
+
+```java
+if (person != null && person.address() != null && person.address().street() != null) {
+    if (!person.address().street().isEmpty()) {
+        street = person.address().street().toUpperCase();
+    }
+}
+```
+
+## Java 9, Java 10 e Java 11
+
+- Modularità
+- JShell
+- Metodi privati per interfacce
+- List.of(), Set.of(), Map.of()
+- `var list = List.of("ciao");`
+- un nuovo HttpClient
+- nuovi metodi sulle stringhe: isBlank(), lines(), strip(), stripLeading(), stripTrailing(), repeat()
+
+
+## .. Java 17
+
+### Text block
+
+Permettono di gestire agevolmente stringhe su più linee.
+
+```java
+String query = """
+        SELECT "EMP_ID", "LAST_NAME" FROM "EMPLOYEE_TB"
+        WHERE "CITY" = 'INDIANAPOLIS'
+        ORDER BY "EMP_ID", "LAST_NAME";
+        """;
+```
+
+Più dettagli qui: https://openjdk.org/jeps/378
+
+### Record
+
+Prima di parlare di record è forse il caso di parlare di POJO e questo articolo li mette a confronto molto bene: https://www.baeldung.com/java-record-keyword
+
+### Pattern Matching instanceOf
+
+```java
+if (obj instanceof String s) {
+    System.out.println("Object is a String: " + s.length() + " characters long.");
+} else if (obj instanceof Integer) {
+    Integer i = (Integer) obj;
+    System.out.println("Object is an Integer: " + (i * 2));
+} else {
+    System.out.println("Object is of an unknown type.");
+}
+```
+
+## .. Java 21
+
+### Pattern matching
+
+```java
+Object input = "hello";
+var result = switch (input) {
+    case Integer i -> "It's and integer";
+    case Long l -> "It's a long";
+    case Double d -> "It's a double";
+    case String s when s.isEmpty() -> "It's an empty string";
+    case String s -> s;
+    default -> "Unexpected value: " + input;
+};
+
+Assertions.assertEquals("hello", result);
+```
+
+Purtroppo java non è perfetto e il pattern matching in java avrà necessità di evolvere ancora tanto:
+
+```scala
+val hello = Option("hello")
+val world = Option("world")
+
+(hello, world) match {
+  case (Some(h), Some(w)) => println(s"Double match! '$h' e '$w'")
+  case _                  => println("nope..")
+}
+```
+
+### Virtual Threads (project Loom)
+
+> The goal of this Project is to explore and incubate Java VM features and APIs built on top of them for the implementation of lightweight user-mode threads (fibers), delimited continuations (of some form), and related features, such as explicit tail-call.
+
+Una rivoluzione nel mondo java che forse deve prendere ancora lo spazio che si merita.
+Un bell'articolo: https://rockthejvm.com/articles/the-ultimate-guide-to-java-virtual-threads
