@@ -572,7 +572,27 @@ List<String> immutableList = List.of("apple", "banana", "cherry");
 
 Ci sono altre librerie che permetto di utilizzare reali collezioni `immutable`.
 
+```java
+ImmutableList<String> fruits = ImmutableList.of("mela", "pera", "banana");
+ImmutableList<String> moreFruits = ImmutableList.<String>builder()
+                                          .addAll(fruits)
+                                          .add("pesca")
+                                          .build();
+```
 
+Ne vale davvero la pena? Thread safety > everything
+
+In alternativa spesso già una defensive copy potrebbe salvarci.. ma occhio perché potrebbe portare a pensare che si stia modificando
+la reale istanza quando invece è una copia.
+```java
+public List<String> getItems() {
+    return new ArrayList<>(items); // Returning a copy prevents modification
+}
+
+public List<String> getUnmodifiableItems() {
+    return Collections.unmodifiableList(items);
+}
+```
 # equals e hashCode: uguaglianza tra oggetti
 
 > In Java, `equals()` definisce l'**uguaglianza logica** tra due oggetti (cioè se rappresentano lo stesso valore o stato), mentre `hashCode()` restituisce un **valore hash intero** utilizzato per determinare efficientemente la potenziale uguaglianza e distribuire gli oggetti nelle collezioni basate su hash (come `HashMap` e `HashSet`), con il contratto cruciale che se due oggetti sono uguali secondo `equals()`, il loro `hashCode()` deve restituire lo stesso valore.
