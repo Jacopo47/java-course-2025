@@ -41,6 +41,10 @@ java {
 
 test {
     systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+
+    if (project.hasProperty('excludeTests')) {
+        exclude project.property('excludeTests')
+    }
 }
 compileJava {
     options.encoding = 'UTF-8'
