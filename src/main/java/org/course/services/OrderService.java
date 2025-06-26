@@ -34,8 +34,9 @@ public class OrderService {
             """;
 
     private static final String INSERT = """
-            INSERT INTO orders (id, userId, bookId, quantity, price, createdAt, updatedAt)
-                VALUES(:id, :userId, :bookId, :quantity, :price, :createdAt, :updatedAt);
+            INSERT INTO orders (id, userId, bookId, quantity, price)
+                VALUES(:id, :userId, :bookId, :quantity, :price)
+                RETURNING *;
             """;
     @Inject
     Jdbi db;
@@ -75,15 +76,15 @@ public class OrderService {
         };
 
 
-        Function<OrderItem, OrderItem> insert = o -> db.withHandle(handle -> handle
+        Function<OrderItem, OrderItem> insert = item -> db.withHandle(handle -> handle
                 .createQuery(INSERT)
-                .bindBean(request)
+                .bindMethods(item)
                 .mapTo(OrderItem.class)
                 .one());
 
         long nextId = db.withHandle(h -> h.createQuery("SELECT nextval('orders_id_sequence')")
-                .mapTo(Long.class))
-                .one();
+                .mapTo(Long.class)
+                .one());
 
         return mapToOrders.apply(nextId, request)
                 .map(insert)

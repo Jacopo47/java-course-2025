@@ -1,9 +1,7 @@
 package org.course.controllers;
 
 import io.smallrye.jwt.build.Jwt;
-import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -16,7 +14,6 @@ import org.course.services.UserService;
 import org.eclipse.microprofile.jwt.Claims;
 
 import java.time.Duration;
-import java.util.Arrays;
 
 @Path("/auth")
 @Produces(MediaType.APPLICATION_JSON)
@@ -39,5 +36,11 @@ public class LoginController {
 
 
         return new Token(token);
+    }
+
+    @POST
+    @Path("/registration")
+    public User create(UserRegistration registration) {
+        return service.create(registration);
     }
 }

@@ -2,6 +2,7 @@ CREATE TABLE Users(
     id serial primary key,
     email text UNIQUE NOT NULL,
     birthdate timestamp,
+    surnme text NOT NULL,
     createdAt timestamp NOT NULL default now(),
     updatedAt timestamp NOT NULL default now()
 );

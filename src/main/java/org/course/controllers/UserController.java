@@ -27,10 +27,4 @@ public class UserController {
     public User get() {
         return service.byEmail(jwt.getSubject());
     }
-
-    @POST
-    public User create(UserRegistration registration) {
-        return service.create(registration);
-
-    }
 }
