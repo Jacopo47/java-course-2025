@@ -18,8 +18,8 @@ public class UserService {
             """;
 
     private static final String INSERT = """
-            INSERT INTO users (email, birthdate)
-                VALUES(:email, :birthdate) returning *;
+            INSERT INTO users (email, birthdate, surnme)
+                VALUES(:email, :birthdate, :surnme) returning *;
             """;
     @Inject
     Jdbi db;

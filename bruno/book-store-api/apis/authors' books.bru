@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/authors
+  url: http://localhost:8080/authors/:id/books
   body: json
   auth: bearer
+}
+
+params:path {
+  id: 9
 }
 
 auth:bearer {

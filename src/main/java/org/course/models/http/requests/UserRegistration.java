@@ -4,5 +4,6 @@ import java.time.LocalDate;
 
 public record UserRegistration(
         String email,
-        LocalDate birthdate
+        LocalDate birthdate,
+        String surnme
 ) { }
