@@ -16,6 +16,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-rest'
     implementation 'io.quarkus:quarkus-arc'
 
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+
     implementation 'io.quarkiverse.jdbi:quarkus-jdbi:1.7.3'
     implementation 'org.jdbi:jdbi3-stringtemplate4:3.49.4'
     implementation 'io.quarkus:quarkus-agroal'
