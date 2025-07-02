@@ -19,5 +19,4 @@ class AuditableTest {
         Assertions.assertTrue(second.hasReceivedUpdates());
     }
 
-
 }

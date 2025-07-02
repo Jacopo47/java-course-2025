@@ -24,7 +24,7 @@ public class WithPostgresDatasource implements QuarkusTestResourceLifecycleManag
 
 
         return Map.ofEntries(
-                Map.entry("quarkus.datasource.db-kind", "oracle"),
+                Map.entry("quarkus.datasource.db-kind", "postgres"),
                 Map.entry("quarkus.datasource.jdbc.url", postgres.getJdbcUrl()),
                 Map.entry("quarkus.datasource.username", postgres.getUsername()),
                 Map.entry("quarkus.datasource.password", postgres.getPassword()));

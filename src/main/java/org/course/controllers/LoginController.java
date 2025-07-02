@@ -2,6 +2,7 @@ package org.course.controllers;
 
 import io.smallrye.jwt.build.Jwt;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -22,20 +23,22 @@ public class LoginController {
     @Inject
     UserService service;
 
-
     @POST
     @Path("/login")
     public Token login(Login login) {
-        var user = service.byEmail(login.email());
+        try {
+            var user = service.byEmail(login.email());
 
-        var token = Jwt
-                        .subject(user.email())
-                        .claim(Claims.birthdate.name(), user.birthdate())
-                        .expiresIn(Duration.ofHours(1))
-                        .sign();
+            var token = Jwt
+                    .subject(user.email())
+                    .claim(Claims.birthdate.name(), user.birthdate())
+                    .expiresIn(Duration.ofHours(1))
+                    .sign();
 
-
-        return new Token(token);
+            return new Token(token);
+        } catch (IllegalStateException ex) {
+            throw new BadRequestException();
+        }
     }
 
     @POST
